@@ -38,9 +38,9 @@ RUN \
     sysctl -p && \
     cat /proc/meminfo | grep Huge && \
     echo "server {\n    listen 80;\n    server_name localhost;\n    root /home/www;\n    access_log /var/log/nginx/\$server_name.access.log  main;\n    include php_handler;\n}" > /etc/nginx/conf.d/default.conf && \
-    echo "location / {\n        index index.php index.html index.htm;\n    #try_files \$uri \$uri/ /index.php?\$args;#For Yii\n}\nlocation ~ \\.php\$ {\n    fastcgi_split_path_info ^(.+\\.php)(/.+)\$;\n    #fastcgi_pass   127.0.0.1:9000;\n    fastcgi_pass   unix:/var/run/php5-fpm.sock;\n    fastcgi_index  index.php;\n    fastcgi_param  SCRIPT_FILENAME    \$document_root\$fastcgi_script_name;\n    include        fastcgi_params;\n}" > /etc/nginx/php_handler && \
+    echo "location / {\n    index index.php index.html index.htm;\n    #try_files \$uri \$uri/ /index.php?\$args;#For Yii\n}\nlocation ~ \\.php\$ {\n    fastcgi_split_path_info ^(.+\\.php)(/.+)\$;\n    #fastcgi_pass   127.0.0.1:9000;\n    fastcgi_pass   unix:/var/run/php5-fpm.sock;\n    fastcgi_index  index.php;\n    fastcgi_param  SCRIPT_FILENAME    \$document_root\$fastcgi_script_name;\n    include        fastcgi_params;\n}" > /etc/nginx/php_handler && \
     echo "/etc/init.d/php5-fpm start\n/etc/init.d/nginx start\n#/etc/init.d/memcached start\n#/etc/init.d/redis-server start" > /root/start.sh && \
     chmod +x /root/start.sh
 
 EXPOSE 80 443
-CMD ["/bin/bash", "/root/start.sh"]
+#CMD ["/bin/bash", "/root/start.sh"]
