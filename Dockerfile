@@ -15,6 +15,7 @@ RUN \
     apt-get install wget vim -y && \
     apt-get install nginx -y && \
     apt-get install php5-cli php5-fpm php5-curl php5-gd php5-mysql php5-mcrypt php5-memcache php5-memcached php5-redis -y && \
+    apt-get install memcached redis-server -y && \
     apt-get clean && apt-get autoclean && \
     mkdir /var/log/php && \
     sed -i -e "s/^;cgi.fix_pathinfo=1/cgi.fix_pathinfo = 0/g" /etc/php5/cli/php.ini /etc/php5/fpm/php.ini && \
