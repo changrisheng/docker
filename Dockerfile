@@ -25,7 +25,7 @@ RUN \
     sed -i -e "s/^;*error_log\s*=.*/error_log=\/var\/log\/php\/php_error.log/g" /etc/php5/cli/php.ini /etc/php5/fpm/php.ini && \
     sed -i -e "s/;*date.timezone\s*=.*/date.timezone = UTC/" /etc/php5/cli/php.ini /etc/php5/fpm/php.ini && \
     sed -i -e "s/;*error_log\s*=.*/error_log = \/var\/log\/php\/php5-fpm.log/g" /etc/php5/fpm/php-fpm.conf && \
-    sed -i -e "s/;*access.log\s*=.*/access.log = \/var\/log\/php\/\$pool.access.log/g" /etc/php5/fpm/pool.d/www.conf && \
+    #sed -i -e "s/;*access.log\s*=.*/access.log = \/var\/log\/php\/\$pool.access.log/g" /etc/php5/fpm/pool.d/www.conf && \
     sed -i -e "s/user\s*nginx;/user www-data;/g" /etc/nginx/nginx.conf && \
     sed -i -e "/#\s*deny access/i\    include php_handler;" /etc/nginx/conf.d/default.conf && \
     sed -i -e "s/\<index\s\s*.*/index index\.php index\.html index\.htm;/" /etc/nginx/conf.d/default.conf && \
