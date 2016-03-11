@@ -43,5 +43,5 @@ RUN \
     echo "/etc/init.d/php5-fpm start\n/etc/init.d/nginx start\n#/etc/init.d/memcached start\n#/etc/init.d/redis-server start" > /root/start.sh && \
     chmod +x /root/start.sh
 
-EXPOSE 80 443
+EXPOSE 80 443 3306 11211 6379
 #CMD ["/bin/bash", "/root/start.sh"]

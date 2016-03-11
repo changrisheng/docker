@@ -27,7 +27,7 @@
 4. Generate containner:
 	```Bash
     #You will get a ssh terminal, just exit it
-    docker run -it --name ubuntu-php -p 80:80 -p 443:443 -v ~/Documents/www:/home/www hhxsv5:ubuntu-php sh -c '/root/start.sh && /bin/bash'
+    docker run -it --name ubuntu-php -p 80:80 -p 443:443 -p 3306:3306 -p 11211:11211 -p 6379:6379 -v ~/Documents/www:/home/www hhxsv5:ubuntu-php sh -c '/root/start.sh && /bin/bash'
 	```
 
 5. Start containner:
