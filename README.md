@@ -35,5 +35,6 @@
     docker start -i ubuntu-php
 	```
     
-6. Do some customized configurations, nginx vhost,redis,memcached.
-7. More docs: http://docs.daocloud.io/faq/docker101
+6. Do some customized configurations, nginx vhost,mysql,redis,memcached, etc.
+7. Note: bind-address cannot be 127.0.0.1. For mysql: /etc/mysql/my.cnf, otherwise cannot connect.
+8. More docs: http://docs.daocloud.io/faq/docker101
