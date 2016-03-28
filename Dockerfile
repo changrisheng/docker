@@ -1,5 +1,7 @@
 # Nginx for PHP developer
 # Base on Ubuntu 14.04
+# Build: docker build -t hhxsv5/ubuntu-php:latest .
+# Run: docker run -it --name ubuntu-php -p 80:80 -p 443:443 -p 3306:3306 -p 11211:11211 -p 6379:6379 -v ~/Documents/www:/home/www hhxsv5/ubuntu-php:latest sh -c '/root/start.sh && /bin/bash'
 # VERSION 0.0.1
 FROM ubuntu:trusty
 ENV CODENAME=trusty
