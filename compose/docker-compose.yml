@@ -1,34 +1,5 @@
 version: '2'
 services:
-  nginx:
-      build: ./nginx
-      container_name: nginx
-      ports:
-        - "80:80"
-        - "443:443"
-      links:
-        - "php"
-      volumes:
-        - ~/opt:/opt
-      environment:
-        TZ: Asia/Shanghai
-      # restart: always
-
-  php:
-      build: ./php
-      container_name: php
-      ports:
-        - "9000:9000"
-      links:
-        - "mysql"
-        # - "memcache"
-        - "redis"
-  #      - "gearman"
-      volumes:
-        - ~/opt:/opt
-      environment:
-        TZ: Asia/Shanghai
-
   mysql:
       build: ./mysql
       container_name: mysql
@@ -59,3 +30,35 @@ services:
   #      - "4730:4730"
   #    volumes:
   #      - ~/opt:/opt
+
+  php:
+      build: ./php
+      container_name: php
+      ports:
+        - "9000:9000"
+      links:
+        - "mysql"
+        # - "memcache"
+        - "redis"
+  #      - "gearman"
+      volumes:
+        - ~/opt:/opt
+      environment:
+        TZ: Asia/Shanghai
+
+  nginx:
+      build: ./nginx
+      container_name: nginx
+      ports:
+        - "80:80"
+        - "443:443"
+      links:
+        - "php"
+      volumes:
+        - ~/opt:/opt
+      volumes_from:
+      - php
+      environment:
+        TZ: Asia/Shanghai
+      # restart: always
+
