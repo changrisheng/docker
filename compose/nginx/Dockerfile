@@ -1,13 +1,22 @@
-FROM daocloud.io/library/nginx:1.11.0
+FROM daocloud.io/nginx:1.10.1
 
-ADD  nginx.conf /etc/nginx/nginx.conf
-ADD  php_handler.conf /etc/nginx/php_handler.conf
-ADD  conf.d/* /etc/nginx/conf.d/
-RUN  mkdir /opt/www && mkdir /var/log/nginx -p
-RUN  touch /var/log/nginx/access.log
-RUN  touch /var/log/nginx/error.log
-RUN  chown -R www-data.www-data /opt/www /var/log/nginx
+ADD sources.list /etc/apt/sources.list
+RUN apt-get update
 
-EXPOSE 80
-VOLUME ["/opt"]
+ADD nginx.conf /etc/nginx/nginx.conf
+ADD php_handler.conf /etc/nginx/php_handler.conf
+ADD conf.d/* /etc/nginx/conf.d/
 
+# Write Permission
+RUN usermod -u 1000 www-data
+
+# Create directory
+RUN mkdir /docker/www -p
+RUN mkdir /docker/log/nginx -p
+
+RUN chown -R www-data.www-data /docker/www
+RUN chown -R www-data.www-data /docker/log/nginx
+
+EXPOSE 80 443
+
+CMD ["nginx", "-g", "daemon off;"]
