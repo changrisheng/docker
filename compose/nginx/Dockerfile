@@ -1,7 +1,7 @@
 FROM daocloud.io/nginx:1.10.1
 
 ADD sources.list /etc/apt/sources.list
-RUN apt-get update
+RUN apt-get update && apt-get install -y vim lrzsz
 
 ADD nginx.conf /etc/nginx/nginx.conf
 ADD php_handler.conf /etc/nginx/php_handler.conf
