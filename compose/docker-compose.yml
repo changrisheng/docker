@@ -9,7 +9,7 @@ services:
         # - "memcache"
         # - "gearman"
       volumes:
-        - "~/Documents/docker:/docker"
+        - "~/Documents/docker/www:/docker/www"
         - "~/Documents/docker/log:/docker/log"
       environment:
         TZ: "Asia/Shanghai"
@@ -28,7 +28,7 @@ services:
       links:
         - "php:php"
       volumes:
-        - "~/Documents/docker:/docker"
+        - "~/Documents/docker/www:/docker/www"
         - "~/Documents/docker/log:/docker/log"
       working_dir: "/docker"
       restart: always
