@@ -31,6 +31,9 @@ ADD php-fpm.conf /usr/local/etc/php-fpm.conf
 COPY redis.tgz /home/redis.tgz
 COPY memcached.tgz /home/memcached.tgz
 COPY memcache.tgz /home/memcache.tgz
+COPY opcache.ini /home/opcache.ini
+
+RUN cat /home/opcache.ini >> /usr/local/etc/php/conf.d/docker-php-ext-opcache.ini
 
 RUN pecl install /home/redis.tgz && echo "extension=redis.so" > /usr/local/etc/php/conf.d/redis.ini \
     && pecl install /home/memcached.tgz && echo "extension=memcached.so" > /usr/local/etc/php/conf.d/memcached.ini \
