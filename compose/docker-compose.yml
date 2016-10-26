@@ -13,9 +13,6 @@ services:
         - "~/Documents/docker/log:/docker/log"
       environment:
         TZ: "Asia/Shanghai"
-      # extra_hosts:
-      #   - "svr.med3.docker:192.168.99.100"
-      #   - "transform-svr.med3.docker:192.168.99.100"
       working_dir: "/docker"
       restart: always
 
@@ -32,8 +29,10 @@ services:
         - "~/Documents/docker/log:/docker/log"
       working_dir: "/docker"
       restart: always
+
   redis:
     build: ./redis
     container_name: redis
     ports:
       - "6379:6379"
+    restart: always
