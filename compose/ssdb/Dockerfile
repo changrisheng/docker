@@ -11,4 +11,4 @@ RUN wget --no-check-certificate https://github.com/ideawu/ssdb/archive/master.zi
 
 EXPOSE 8888
 
-CMD ["/usr/local/ssdb/ssdb-server -d /usr/local/ssdb/ssdb.conf"]
+CMD ["/usr/local/ssdb/ssdb-server", "-d", "/usr/local/ssdb/ssdb.conf"]
