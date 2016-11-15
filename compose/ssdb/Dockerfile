@@ -1,4 +1,4 @@
-FROM wendal/ssdb:3.0
+FROM wendal/ssdb:latest
 
 #ADD sources.list /etc/apt/sources.list
 #RUN apt-get update && apt-get install -y vim lrzsz git wget unzip make autoconf g++
