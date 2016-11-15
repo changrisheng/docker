@@ -1,0 +1,13 @@
+FROM wendal/ssdb:3.0
+
+#ADD sources.list /etc/apt/sources.list
+#RUN apt-get update && apt-get install -y vim lrzsz git wget unzip make autoconf g++
+# RUN wget --no-check-certificate https://github.com/ideawu/ssdb/archive/master.zip \
+#     && unzip master \
+#     && cd ssdb-master \
+#     && make \
+#     && make install \
+#     && sed "s/ip: 127.0.0.1/ip: 0.0.0.0/" /usr/local/ssdb/ssdb.conf \
+#     && /usr/local/ssdb/ssdb-server -d /usr/local/ssdb/ssdb.conf
+
+EXPOSE 8888
