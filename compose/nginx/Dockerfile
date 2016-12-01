@@ -17,6 +17,4 @@ RUN mkdir /docker/log/nginx -p
 RUN chown -R www-data.www-data /docker/www
 RUN chown -R www-data.www-data /docker/log/nginx
 
-EXPOSE 80 443
-
 CMD ["nginx", "-g", "daemon off;"]

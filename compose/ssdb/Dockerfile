@@ -9,6 +9,4 @@ RUN wget --no-check-certificate https://github.com/ideawu/ssdb/archive/master.zi
     && make install \
     && sed -i "s/ip: 127.0.0.1/ip: 0.0.0.0/" /usr/local/ssdb/ssdb.conf
 
-EXPOSE 8888
-
 CMD ["/usr/local/ssdb/ssdb-server", "/usr/local/ssdb/ssdb.conf", "-s", "restart"]
