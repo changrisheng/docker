@@ -38,6 +38,7 @@ services:
     container_name: redis
     ports:
       - "6379:6379"
+    working_dir: "/root"
     restart: always
 
   ssdb:
@@ -45,4 +46,5 @@ services:
     container_name: ssdb
     ports:
       - "8888:8888"
+    working_dir: "/root"
     restart: always
