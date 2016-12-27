@@ -1,25 +1,34 @@
-# Docker guideline
-1. Install Docker Toolbox
+# Docker guideline for PHP Developer
 
-    - Mac: https://docs.docker.com/mac/
-    - Linux: https://docs.docker.com/linux/
-    - Windows: https://docs.docker.com/windows/
+## Images
 
-2. Run default docker machine: `docker-machine start default`
+- Nginx: `nginx:1.10.1`
 
-    ```Bash
-    docker-machine start default #maybe need to restart
-    docker-machine env default
-    eval "$(docker-machine env default)"
-    ```
+- PHP-FPM: `php:5.6-fpm`; with extensions: `Opcache`, `Redis`, `Memcache`, `Memcached`, `Swoole`; with command: `Composer`
 
-3. Build images && create containners:
+- Redis: `redis:3.0`
+
+- SSDB: `https://github.com/ideawu/ssdb/archive/master.zip`
+
+## Steps
+
+1. Install docker
+
+    - [Mac](https://download.docker.com/mac/stable/Docker.dmg)
+
+    - [Linux](http://docs.docker.com/engine/installation/linux/)
+
+    - [Windows](https://download.docker.com/win/stable/InstallDocker.msi)
+
+2. Build images & create containners:
 
     ```Bash
     docker-compose up
     ```
-5. Start containners:
+3. Start containners:
 
     ```Bash
     docker-compose start
     ```
+
+4. Maybe you need to bind host to `127.0.0.1`, then `docker-compose restart`
