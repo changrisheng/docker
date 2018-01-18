@@ -2,8 +2,9 @@ FROM daocloud.io/debian:8
 
 ADD sources.list /etc/apt/sources.list
 RUN apt-get update && apt-get install -y vim lrzsz git wget unzip make autoconf g++
-RUN wget --no-check-certificate https://github.com/ideawu/ssdb/archive/master.zip \
-    && unzip master \
+ADD ssdb.zip /home/root/ssdb.zip
+RUN cd /home/root/ \
+    && unzip ssdb.zip \
     && cd ssdb-master \
     && make \
     && make install \
