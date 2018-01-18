@@ -49,11 +49,7 @@ COPY swoole.ini /home/swoole.ini
 RUN cat /home/swoole.ini > /usr/local/etc/php/conf.d/swoole.ini
 
 # Install composer
-RUN /usr/local/bin/php -r "readfile('https://getcomposer.org/installer');" > /root/composer-setup.php
-RUN /usr/local/bin/php /root/composer-setup.php --install-dir="/root" --filename="composer.phar"
-RUN rm -f /root/composer-setup.php
-RUN mv /root/composer.phar /usr/local/bin/composer
-
+COPY composer.phar /usr/local/bin/composer
 
 # Write Permission
 RUN usermod -u 1000 www-data
