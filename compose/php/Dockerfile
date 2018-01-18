@@ -57,6 +57,7 @@ RUN usermod -u 1000 www-data
 # Create directory
 RUN mkdir /docker/www -p
 RUN mkdir /docker/log/php -p
+RUN touch /docker/log/php/php_errors.log
 
 RUN chown -R www-data.www-data /docker/www
 RUN chown -R www-data.www-data /docker/log/php

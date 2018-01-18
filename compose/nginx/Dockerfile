@@ -14,6 +14,8 @@ RUN usermod -u 1000 www-data
 RUN mkdir /docker/www -p
 RUN mkdir /docker/log/nginx -p
 
+RUN touch /docker/log/nginx/access.log /docker/log/nginx/error.log;
+
 RUN chown -R www-data.www-data /docker/www
 RUN chown -R www-data.www-data /docker/log/nginx
 
