@@ -43,7 +43,7 @@ RUN pecl install /home/redis.tgz && echo "extension=redis.so" > /usr/local/etc/p
 RUN apt-get install -y libpcre3 libpcre3-dev libssl-dev
 COPY swoole.tar.gz /home/swoole.tar.gz
 RUN mkdir /home/swoole
-RUN tar -zvxf /home/swoole.tar.gz -C /home/swoole  --strip-components 1
+RUN tar -zvxf /home/swoole.tar.gz -C /home/swoole --strip-components 1
 RUN cd /home/swoole; phpize; ./configure --enable-openssl; make; make install
 COPY swoole.ini /home/swoole.ini
 RUN cat /home/swoole.ini > /usr/local/etc/php/conf.d/swoole.ini
