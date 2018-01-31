@@ -49,6 +49,9 @@ RUN cat /home/swoole.ini > /usr/local/etc/php/conf.d/swoole.ini
 # Install composer
 COPY composer.phar /usr/local/bin/composer
 
+# Chinese mirror
+RUN /usr/local/bin/composer config -g repo.packagist composer https://packagist.phpcomposer.com
+
 # Write Permission
 RUN usermod -u 1000 www-data
 
