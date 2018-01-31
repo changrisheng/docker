@@ -27,7 +27,7 @@ services:
       build: ./php7
       container_name: php7
       ports:
-        - "9000:9000"
+        - "9001:9001"
         - "8011:8011"
         - "8001:8001"
         - "8002:8002"
@@ -54,6 +54,7 @@ services:
         - "443:443"
       links:
         - "php:php"
+        - "php7:php7"
       volumes:
         - "~/Documents/docker/www:/docker/www"
         - "~/Documents/docker/log:/docker/log"
