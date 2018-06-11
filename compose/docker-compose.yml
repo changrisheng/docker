@@ -11,8 +11,7 @@ services:
         - "8003:8003"
         - "8004:8004"
       extra_hosts:
-        - "product.gsp2.g7.com.cn:172.18.0.4"
-        - "order.gsp2.g7.com.cn:172.18.0.4"
+        - "test.com:172.18.0.4"
       links:
         - "redis:redis"
         # - "ssdb:ssdb"
