@@ -10,9 +10,12 @@ services:
         - "8002:8002"
         - "8003:8003"
         - "8004:8004"
+      extra_hosts:
+        - "product.gsp2.g7.com.cn:172.18.0.4"
+        - "order.gsp2.g7.com.cn:172.18.0.4"
       links:
         - "redis:redis"
-        - "ssdb:ssdb"
+        # - "ssdb:ssdb"
         # - "memcache"
         # - "gearman"
       volumes:
@@ -21,30 +24,30 @@ services:
       environment:
         TZ: "Asia/Shanghai"
       working_dir: "/docker"
-      restart: always
+      restart: "no"
 
-  php7:
-      build: ./php7
-      container_name: php7
-      ports:
-        - "9001:9001"
-        - "5200:5200"
-        - "5201:5201"
-        - "5202:5202"
-        - "5203:5203"
-        - "5204:5204"
-      links:
-        - "redis:redis"
-        - "ssdb:ssdb"
-        # - "memcache"
-        # - "gearman"
-      volumes:
-        - "~/Documents/docker/www:/docker/www"
-        - "~/Documents/docker/log:/docker/log"
-      environment:
-        TZ: "Asia/Shanghai"
-      working_dir: "/docker"
-      restart: always
+  # php7:
+  #     build: ./php7
+  #     container_name: php7
+  #     ports:
+  #       - "9001:9001"
+  #       - "5200:5200"
+  #       - "5201:5201"
+  #       - "5202:5202"
+  #       - "5203:5203"
+  #       - "5204:5204"
+  #     links:
+  #       - "redis:redis"
+  #       - "ssdb:ssdb"
+  #       # - "memcache"
+  #       # - "gearman"
+  #     volumes:
+  #       - "~/Documents/docker/www:/docker/www"
+  #       - "~/Documents/docker/log:/docker/log"
+  #     environment:
+  #       TZ: "Asia/Shanghai"
+  #     working_dir: "/docker"
+  #     restart: "no"
 
   nginx:
       build: ./nginx
@@ -54,12 +57,12 @@ services:
         - "443:443"
       links:
         - "php:php"
-        - "php7:php7"
+        # - "php7:php7"
       volumes:
         - "~/Documents/docker/www:/docker/www"
         - "~/Documents/docker/log:/docker/log"
       working_dir: "/docker"
-      restart: always
+      restart: "no"
 
   redis:
     build: ./redis
@@ -67,12 +70,12 @@ services:
     ports:
       - "6379:6379"
     working_dir: "/root"
-    restart: always
+    restart: "no"
 
-  ssdb:
-    build: ./ssdb
-    container_name: ssdb
-    ports:
-      - "8888:8888"
-    working_dir: "/root"
-    restart: always
+  # ssdb:
+  #   build: ./ssdb
+  #   container_name: ssdb
+  #   ports:
+  #     - "8888:8888"
+  #   working_dir: "/root"
+  #   restart: "no"

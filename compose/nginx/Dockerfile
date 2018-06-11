@@ -5,6 +5,7 @@ RUN apt-get update && apt-get install -y vim lrzsz
 
 ADD nginx.conf /etc/nginx/nginx.conf
 ADD php_handler.conf /etc/nginx/php_handler.conf
+ADD g7.conf /etc/nginx/g7.conf
 ADD conf.d/* /etc/nginx/conf.d/
 
 # Write Permission
