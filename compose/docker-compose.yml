@@ -56,7 +56,7 @@ services:
         - "443:443"
       links:
         # - "php:php"
-        - "php7:php7"
+        - "php7:php"
       volumes:
         - "~/Documents/docker/www:/docker/www"
         - "~/Documents/docker/log:/docker/log"

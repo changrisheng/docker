@@ -1,4 +1,4 @@
-FROM daocloud.io/php:7.1-fpm
+FROM daocloud.io/php:7.1-fpm-jessie
 
 ADD sources.list /etc/apt/sources.list
 
@@ -7,9 +7,11 @@ RUN apt-get update && apt-get install -y \
     lrzsz \
     libjpeg-dev \
     libpng12-dev \
+    zlib1g-dev \
     libfreetype6-dev \
     libjpeg62-turbo-dev \
     libmcrypt-dev \
+    libsasl2-dev \
     libmemcached-dev \
     libicu-dev \
     mysql-client \
