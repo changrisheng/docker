@@ -30,4 +30,10 @@
     docker-compose up -d
     ```
 
-3. Maybe you need to bind host to `127.0.0.1`, then `docker-compose restart`
+3. Maybe you need to something:
+
+    - Modify Nginx configuration, the default configuration for Laravel and LaravelS already exists
+
+    - Bind domain into your host machine. Linux/Mac: `/etc/hosts`, Windows: `C:\Windows\System32\drivers\etc\hosts`
+
+    - Run `docker-compose restart`
