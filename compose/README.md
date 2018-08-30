@@ -4,11 +4,13 @@
 
 - Nginx: `nginx:1.10.1`
 
-- PHP-FPM: `php:5.6-fpm`; with extensions: `Opcache` `Redis` `Memcache` `Memcached` `Swoole`; with command: `Composer`
+- PHP-FPM: `php:7.1-fpm-jessie`; with extensions: `Opcache` `Redis` `Memcache` `Memcached` `Swoole`; with command: `Composer`
 
 - Redis: `redis:3.0`
 
 - SSDB: `https://github.com/ideawu/ssdb/archive/master.zip`
+
+- MySQL: `mysql:5.7.23`
 
 ## Steps
 
