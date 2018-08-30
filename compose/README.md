@@ -22,15 +22,10 @@
 
     - [Windows](https://download.docker.com/win/stable/InstallDocker.msi)
 
-2. Build images & create containners:
+2. Build images, create containners, and start them:
 
     ```Bash
-    docker-compose up
-    ```
-3. Start containners:
-
-    ```Bash
-    docker-compose start
+    docker-compose up -d
     ```
 
-4. Maybe you need to bind host to `127.0.0.1`, then `docker-compose restart`
+3. Maybe you need to bind host to `127.0.0.1`, then `docker-compose restart`
