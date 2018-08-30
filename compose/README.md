@@ -14,7 +14,7 @@
 
 ## Steps
 
-1. Install docker
+1. Install Docker
 
     - [Mac](https://download.docker.com/mac/stable/Docker.dmg)
 
@@ -22,7 +22,9 @@
 
     - [Windows](https://download.docker.com/win/stable/InstallDocker.msi)
 
-2. Build images, create containners, and start them:
+2. Modify the directory in file `docker-compose.yml`, default mount `~/Documents/docker/www` `~/Documents/docker/log`
+
+3. Build images, create containners, and start them:
 
     ```Bash
     docker-compose up -d
