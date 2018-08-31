@@ -30,7 +30,7 @@
     docker-compose up -d
     ```
 
-3. Maybe you need to something:
+3. Maybe you need to do something:
 
     - Modify Nginx configuration, the default configuration for Laravel and LaravelS already exists
 
