@@ -15,9 +15,7 @@ services:
       #   - "test.com:172.18.0.4"
       # links:
       #   - "redis:redis"
-      #   # - "ssdb:ssdb"
-      #   # - "memcache"
-      #   # - "gearman"
+      #   - "ssdb:ssdb"
       # volumes:
       #   - "~/Documents/docker/www:/docker/www"
       #   - "~/Documents/docker/log:/docker/log"
@@ -40,8 +38,6 @@ services:
       links:
         - "redis:redis"
         # - "ssdb:ssdb"
-        # - "memcache"
-        # - "gearman"
       volumes:
         - "~/Documents/docker/www:/docker/www"
         - "~/Documents/docker/log:/docker/log"
