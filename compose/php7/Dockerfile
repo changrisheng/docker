@@ -34,7 +34,7 @@ RUN apt-get update && apt-get install -y \
 ADD php.ini /usr/local/etc/php/php.ini
 ADD php-fpm.conf /usr/local/etc/php-fpm.conf
 
-# PHP extension
+# OPcache
 COPY opcache.ini /home/opcache.ini
 RUN cat /home/opcache.ini >> /usr/local/etc/php/conf.d/docker-php-ext-opcache.ini
 
