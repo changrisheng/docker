@@ -24,6 +24,11 @@
 
 2. Modify the directory in file `docker-compose.yml`, default mount `~/Documents/docker/www` `~/Documents/docker/log`
 
+    ```Bash
+    # On the host
+    mkdir -p ~/Documents/docker/log/php7 ~/Documents/docker/log/php ~/Documents/docker/log/nginx 
+    ```
+
 3. Build images, create containners, and start them:
 
     ```Bash
