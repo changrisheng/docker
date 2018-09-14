@@ -26,6 +26,8 @@ RUN apt-get update && apt-get install -y \
     && docker-php-ext-install zip \
     && docker-php-ext-install bcmath \
     && docker-php-ext-install gmp \
+    && pecl install redis && docker-php-ext-enable redis \
+    && pecl install memcached && docker-php-ext-enable memcached \
     && docker-php-ext-install mbstring
 
 # PHP config
@@ -33,29 +35,21 @@ ADD php.ini /usr/local/etc/php/php.ini
 ADD php-fpm.conf /usr/local/etc/php-fpm.conf
 
 # PHP extension
-COPY redis.tgz /home/redis.tgz
-COPY memcached.tgz /home/memcached.tgz
 COPY opcache.ini /home/opcache.ini
-
 RUN cat /home/opcache.ini >> /usr/local/etc/php/conf.d/docker-php-ext-opcache.ini
-
-RUN pecl install /home/redis.tgz && echo "extension=redis.so" > /usr/local/etc/php/conf.d/redis.ini \
-    && pecl install /home/memcached.tgz && echo "extension=memcached.so" > /usr/local/etc/php/conf.d/memcached.ini
 
 # Swoole
 RUN apt-get install -y libpcre3 libpcre3-dev libssl-dev
 COPY swoole.tar.gz /home/swoole.tar.gz
 RUN mkdir /home/swoole
 RUN tar -zvxf /home/swoole.tar.gz -C /home/swoole --strip-components 1
-RUN cd /home/swoole; phpize; ./configure --enable-openssl; make; make install
-COPY swoole.ini /home/swoole.ini
-RUN cat /home/swoole.ini > /usr/local/etc/php/conf.d/swoole.ini
+RUN cd /home/swoole; phpize; ./configure --enable-openssl; make; make install; docker-php-ext-enable swoole
 
 # Install composer
 COPY composer.phar /usr/local/bin/composer
 
 # Chinese mirror
-RUN /usr/local/bin/composer config -g repo.packagist composer https://packagist.phpcomposer.com
+RUN /usr/local/bin/composer config -g repo.packagist composer https://packagist.laravel-china.org
 
 # Write Permission
 RUN usermod -u 1000 www-data

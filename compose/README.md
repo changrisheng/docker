@@ -37,7 +37,7 @@
 
 3. Maybe you need to do something:
 
-    - Modify Nginx configuration, the default configuration for Laravel and LaravelS already exists
+    - Modify Nginx configuration in `./nginx/conf.d`, the default configuration for Laravel and LaravelS already exists
 
     - Bind domain into your host machine. Linux/Mac: `/etc/hosts`, Windows: `C:\Windows\System32\drivers\etc\hosts`
 

@@ -5,7 +5,6 @@ RUN apt-get update && apt-get install -y vim lrzsz
 
 ADD nginx.conf /etc/nginx/nginx.conf
 ADD php_handler.conf /etc/nginx/php_handler.conf
-ADD conf.d/* /etc/nginx/conf.d/
 
 # Write Permission
 RUN usermod -u 1000 www-data
