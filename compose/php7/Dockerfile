@@ -16,6 +16,7 @@ RUN apt-get update && apt-get install -y \
     libicu-dev \
     mysql-client \
     libgmp3-dev \
+    libtidy-dev \
     && docker-php-ext-install pdo_mysql \
     && docker-php-ext-install iconv \
     && docker-php-ext-install mcrypt \
@@ -26,6 +27,7 @@ RUN apt-get update && apt-get install -y \
     && docker-php-ext-install zip \
     && docker-php-ext-install bcmath \
     && docker-php-ext-install gmp \
+    && docker-php-ext-install tidy \
     && pecl install redis && docker-php-ext-enable redis \
     && pecl install memcached && docker-php-ext-enable memcached \
     && docker-php-ext-install mbstring

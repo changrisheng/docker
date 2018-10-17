@@ -4,7 +4,7 @@
 
 - Nginx: `nginx:1.10.1`
 
-- PHP-FPM: `php:7.1-fpm-jessie`; with extensions: `Opcache` `Redis` `Memcache` `PDO` `Swoole`; with command: `Composer`
+- PHP-FPM: `php:7.1-fpm-jessie`; with extensions: `OPcache` `Redis` `Memcache` `PDO` `Swoole` `Tidy`; with command: `Composer`
 
 - Redis: `redis:3.0`
 
