@@ -1,28 +1,27 @@
 version: '2'
 services:
-  # php:
-      # build: ./php
-      # container_name: php
-      # ports:
-      #   - "9000:9000"
-      #   - "5200:5200"
-      #   - "8011:8011"
-      #   - "8001:8001"
-      #   - "8002:8002"
-      #   - "8003:8003"
-      #   - "8004:8004"
-      # extra_hosts:
-      #   - "test.com:172.18.0.4"
-      # links:
-      #   - "redis:redis"
-      #   - "ssdb:ssdb"
-      # volumes:
-      #   - "~/Documents/docker/www:/docker/www"
-      #   - "~/Documents/docker/log:/docker/log"
-      # environment:
-      #   TZ: "Asia/Shanghai"
-      # working_dir: "/docker"
-      # restart: "no"
+  php5:
+      build: ./php5
+      container_name: php5
+      ports:
+        - "9001:9001"
+        - "5201:5201"
+        - "8010:8010"
+        - "8012:8012"
+        - "8013:8013"
+        - "8014:8014"
+        - "8021:8021"
+      links:
+        - "mysql:mysql"
+        - "redis:redis"
+        # - "ssdb:ssdb"
+      volumes:
+        - "~/Documents/docker/www:/docker/www"
+        - "~/Documents/docker/log:/docker/log"
+      environment:
+        TZ: "Asia/Shanghai"
+      working_dir: "/docker"
+      restart: "no"
 
   php7:
       build: ./php7
@@ -30,12 +29,13 @@ services:
       ports:
         - "9000:9000"
         - "5200:5200"
-        - "8011:8011"
         - "8001:8001"
         - "8002:8002"
         - "8003:8003"
         - "8004:8004"
+        - "8011:8011"
       links:
+        - "mysql:mysql"
         - "redis:redis"
         # - "ssdb:ssdb"
       volumes:
@@ -53,7 +53,7 @@ services:
         - "80:80"
         - "443:443"
       links:
-        # - "php:php"
+        - "php5:php5"
         - "php7:php7"
       volumes:
         - "~/Documents/docker/www:/docker/www"

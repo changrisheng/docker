@@ -1,4 +1,4 @@
-FROM daocloud.io/php:5.6-fpm
+FROM daocloud.io/php:5.6-fpm-jessie
 
 ADD sources.list /etc/apt/sources.list
 
@@ -15,6 +15,7 @@ RUN apt-get update && apt-get install -y \
     libmemcached-dev \
     libicu-dev \
     mysql-client \
+    libgmp-dev \
     libgmp3-dev \
     libtidy-dev \
     && docker-php-ext-install pdo_mysql \
@@ -31,6 +32,8 @@ RUN apt-get update && apt-get install -y \
     && pecl install redis && docker-php-ext-enable redis \
     && pecl install memcached && docker-php-ext-enable memcached \
     && docker-php-ext-install mbstring
+
+RUN ln -s /usr/include/x86_64-linux-gnu/gmp.h /usr/include/gmp.h
 
 # PHP config
 ADD php.ini /usr/local/etc/php/php.ini
