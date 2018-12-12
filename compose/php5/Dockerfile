@@ -17,23 +17,21 @@ RUN apt-get update && apt-get install -y \
     mysql-client \
     libgmp-dev \
     libgmp3-dev \
-    libtidy-dev \
-    && docker-php-ext-install pdo_mysql \
-    && docker-php-ext-install iconv \
-    && docker-php-ext-install mcrypt \
-    && docker-php-ext-install intl \
-    && docker-php-ext-install opcache \
+    && ln -s /usr/include/x86_64-linux-gnu/gmp.h /usr/include/gmp.h \
+    && docker-php-ext-install gmp \
+    pdo_mysql \
+    iconv \
+    mcrypt \
+    intl \
+    opcache \
+    zip \
+    bcmath \
+    mbstring \
     && docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/ \
     && docker-php-ext-install gd \
-    && docker-php-ext-install zip \
-    && docker-php-ext-install bcmath \
-    && docker-php-ext-install gmp \
-    && docker-php-ext-install tidy \
+    && pecl update-channels \
     && pecl install redis && docker-php-ext-enable redis \
-    && pecl install memcached && docker-php-ext-enable memcached \
-    && docker-php-ext-install mbstring
-
-RUN ln -s /usr/include/x86_64-linux-gnu/gmp.h /usr/include/gmp.h
+    && pecl install memcached-2.2.0 && docker-php-ext-enable memcached
 
 # PHP config
 ADD php.ini /usr/local/etc/php/php.ini
@@ -45,10 +43,7 @@ RUN cat /home/opcache.ini >> /usr/local/etc/php/conf.d/docker-php-ext-opcache.in
 
 # Swoole
 RUN apt-get install -y libpcre3 libpcre3-dev libssl-dev
-COPY swoole.tar.gz /home/swoole.tar.gz
-RUN mkdir /home/swoole
-RUN tar -zvxf /home/swoole.tar.gz -C /home/swoole --strip-components 1
-RUN cd /home/swoole; phpize; ./configure --enable-openssl; make; make install; docker-php-ext-enable swoole
+RUN pecl install swoole-1.10.4 && docker-php-ext-enable swoole
 
 # Install composer
 COPY composer.phar /usr/local/bin/composer
