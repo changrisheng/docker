@@ -1,13 +1,15 @@
-FROM daocloud.io/php:7.1-fpm-jessie
+FROM php:7.3-fpm-stretch
 
+# Chinese mirror
 ADD sources.list /etc/apt/sources.list
 
 RUN apt-get update && apt-get install -y \
     vim \
     lrzsz \
     libjpeg-dev \
-    libpng12-dev \
+    libpng-dev \
     zlib1g-dev \
+    libzip-dev \
     libfreetype6-dev \
     libjpeg62-turbo-dev \
     libmcrypt-dev \
@@ -16,21 +18,21 @@ RUN apt-get update && apt-get install -y \
     libicu-dev \
     mysql-client \
     libgmp3-dev \
-    libtidy-dev \
-    && docker-php-ext-install pdo_mysql \
+    libzip4 \
+    && docker-php-ext-install gmp \
+    pdo_mysql \
     iconv \
-    mcrypt \
     intl \
     opcache \
     zip \
     bcmath \
-    gmp \
     mbstring \
     && docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/ \
     && docker-php-ext-install gd \
     && pecl update-channels \
-    && pecl install redis && docker-php-ext-enable redis \
-    && pecl install memcached && docker-php-ext-enable memcached
+    # && pecl install mcrypt-1.0.1 && docker-php-ext-enable mcrypt \
+    #&& pecl install memcached && docker-php-ext-enable memcached \
+    && pecl install redis && docker-php-ext-enable redis
 
 # PHP config
 ADD php.ini /usr/local/etc/php/php.ini

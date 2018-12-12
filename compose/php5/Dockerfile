@@ -1,12 +1,13 @@
-FROM daocloud.io/php:5.6-fpm-jessie
+FROM php:5.6-fpm-stretch
 
+# Chinese mirror
 ADD sources.list /etc/apt/sources.list
 
 RUN apt-get update && apt-get install -y \
     vim \
     lrzsz \
     libjpeg-dev \
-    libpng12-dev \
+    libpng-dev \
     zlib1g-dev \
     libfreetype6-dev \
     libjpeg62-turbo-dev \
