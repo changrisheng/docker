@@ -23,6 +23,7 @@ RUN apt-get update && apt-get install -y \
     pdo_mysql \
     iconv \
     intl \
+    pcntl \
     opcache \
     zip \
     bcmath \

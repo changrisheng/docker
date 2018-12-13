@@ -24,6 +24,7 @@ RUN apt-get update && apt-get install -y \
     iconv \
     mcrypt \
     intl \
+    pcntl \
     opcache \
     zip \
     bcmath \
