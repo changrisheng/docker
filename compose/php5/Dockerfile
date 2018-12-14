@@ -18,6 +18,7 @@ RUN apt-get update && apt-get install -y \
     mysql-client \
     libgmp-dev \
     libgmp3-dev \
+    procps \
     && ln -s /usr/include/x86_64-linux-gnu/gmp.h /usr/include/gmp.h \
     && docker-php-ext-install gmp \
     pdo_mysql \
@@ -29,7 +30,6 @@ RUN apt-get update && apt-get install -y \
     zip \
     bcmath \
     mbstring \
-    procps \
     && docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/ \
     && docker-php-ext-install gd \
     && pecl update-channels \
