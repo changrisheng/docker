@@ -50,6 +50,7 @@ RUN pecl install swoole-4.2.9 && docker-php-ext-enable swoole
 
 # Install composer
 COPY composer.phar /usr/local/bin/composer
+RUN chmod +x /usr/local/bin/composer
 
 # Chinese mirror
 RUN /usr/local/bin/composer config -g repo.packagist composer https://packagist.laravel-china.org
