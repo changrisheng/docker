@@ -4,7 +4,7 @@ services:
       build: ./php5
       container_name: php5
       ports:
-        - "9001:9001"
+        - "9011:9011"
         - "5201:5201"
         - "8010:8010"
         - "8012:8012"
