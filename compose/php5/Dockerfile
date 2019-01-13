@@ -21,6 +21,7 @@ RUN apt-get update && apt-get install -y \
     procps \
     zip \
     unzip \
+    git \
     && ln -s /usr/include/x86_64-linux-gnu/gmp.h /usr/include/gmp.h \
     && docker-php-ext-install gmp \
     pdo_mysql \

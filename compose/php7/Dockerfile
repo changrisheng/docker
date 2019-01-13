@@ -22,6 +22,7 @@ RUN apt-get update && apt-get install -y \
     procps \
     zip \
     unzip \
+    git \
     && docker-php-ext-install gmp \
     pdo_mysql \
     iconv \
