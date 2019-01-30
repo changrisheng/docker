@@ -22,6 +22,8 @@ services:
         TZ: "Asia/Shanghai"
       working_dir: "/docker"
       restart: "no"
+      cap_add:
+        - sys_ptrace
 
   php7:
       build: ./php7
@@ -45,6 +47,8 @@ services:
         TZ: "Asia/Shanghai"
       working_dir: "/docker"
       restart: "no"
+      cap_add:
+        - sys_ptrace
 
   nginx:
       build: ./nginx
