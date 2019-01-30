@@ -20,14 +20,15 @@ RUN apt-get update && apt-get install -y \
     libgmp3-dev \
     libzip4 \
     procps \
+    zip \
+    unzip \
+    git \
     && docker-php-ext-install gmp \
     pdo_mysql \
     iconv \
     intl \
     pcntl \
     opcache \
-    zip \
-    unzip \
     bcmath \
     mbstring \
     && docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/ \
@@ -47,7 +48,7 @@ RUN cat /home/opcache.ini >> /usr/local/etc/php/conf.d/docker-php-ext-opcache.in
 
 # Swoole
 RUN apt-get install -y libpcre3 libpcre3-dev libssl-dev
-RUN pecl install swoole-4.2.9 && docker-php-ext-enable swoole
+RUN pecl install swoole-4.2.12 && docker-php-ext-enable swoole
 
 # Install composer
 COPY composer.phar /usr/local/bin/composer
