@@ -16,11 +16,11 @@
 
 1. Install Docker
 
-    - [Mac](https://download.docker.com/mac/stable/Docker.dmg)
+    - [Mac](https://docs.docker.com/docker-for-mac/install/)
 
-    - [Linux](http://docs.docker.com/engine/installation/linux/)
+    - [Linux](https://docs.docker.com/install/linux/docker-ce/debian/)
 
-    - [Windows](https://download.docker.com/win/stable/InstallDocker.msi)
+    - [Windows](https://docs.docker.com/docker-for-windows/install/)
 
 2. Modify the directory in file `docker-compose.yml`, default mount `~/Documents/docker/www` `~/Documents/docker/log`
 
