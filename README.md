@@ -12,6 +12,8 @@
 
 - MySQL: `mysql:5.7.23`
 
+- PostgrelSQL: `postgres:11.2`
+
 ## Steps
 
 1. Install Docker
