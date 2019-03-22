@@ -100,3 +100,16 @@ services:
   #     - "127.0.0.1:5432:5432"
   #   environment:
   #     POSTGRES_PASSWORD: xy123456
+  
+  # grafana:
+  #   container_name: grafana
+  #   image: grafana/grafana:5.4.3
+  #   restart: "no"
+  #   ports:
+  #       - 127.0.0.1:3000:3000
+  #   environment:
+  #       - TZ=Asia/Shanghai
+  #       - GF_SECURITY_ADMIN_USER=root
+  #       - GF_SECURITY_ADMIN_PASSWORD=xy123456
+  #   volumes:
+  #     - "./runtime/grafana/data:/var/lib/grafana"
