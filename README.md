@@ -14,6 +14,8 @@
 
 - PostgrelSQL: `postgres:11.2`
 
+- Grafana: `grafana:5.4.3`
+
 ## Steps
 
 1. Install Docker
