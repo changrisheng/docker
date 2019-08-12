@@ -1,6 +1,5 @@
-FROM daocloud.io/nginx:1.10.1
+FROM nginx:1.17.2
 
-ADD sources.list /etc/apt/sources.list
 RUN apt-get update && apt-get install -y vim lrzsz
 
 ADD nginx.conf /etc/nginx/nginx.conf
