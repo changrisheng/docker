@@ -1,29 +1,29 @@
-version: '2'
+version: '3'
 services:
-  php5:
-      build: ./php5
-      container_name: php5
-      ports:
-        - "9011:9011"
-        - "5201:5201"
-        - "8010:8010"
-        - "8012:8012"
-        - "8013:8013"
-        - "8014:8014"
-        - "8021:8021"
-      links:
-        - "mysql:mysql"
-        - "redis:redis"
-        # - "ssdb:ssdb"
-      volumes:
-        - "~/Documents/docker/www:/docker/www"
-        - "~/Documents/docker/log:/docker/log"
-      environment:
-        TZ: "Asia/Shanghai"
-      working_dir: "/docker"
-      restart: "no"
-      cap_add:
-        - sys_ptrace
+  # php5:
+  #     build: ./php5
+  #     container_name: php5
+  #     ports:
+  #       - "9011:9011"
+  #       - "5201:5201"
+  #       - "8010:8010"
+  #       - "8012:8012"
+  #       - "8013:8013"
+  #       - "8014:8014"
+  #       - "8021:8021"
+  #     links:
+  #       - "mysql:mysql"
+  #       - "redis:redis"
+  #       # - "ssdb:ssdb"
+  #     volumes:
+  #       - "~/Documents/docker/www:/docker/www"
+  #       - "~/Documents/docker/log:/docker/log"
+  #     environment:
+  #       TZ: "Asia/Shanghai"
+  #     working_dir: "/docker"
+  #     restart: "no"
+  #     cap_add:
+  #       - sys_ptrace
 
   php7:
       build: ./php7
@@ -57,7 +57,7 @@ services:
         - "80:80"
         - "443:443"
       links:
-        - "php5:php5"
+        # - "php5:php5"
         - "php7:php7"
       volumes:
         - "~/Documents/docker/www:/docker/www"
