@@ -31,11 +31,10 @@ RUN apt-get update && apt-get install -y \
     opcache \
     bcmath \
     mbstring \
-    iputils-ping \
-    net-tools \
     && docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/ \
     && docker-php-ext-install gd \
     && pecl update-channels \
+    && pecl install inotify-2.0.0 && docker-php-ext-enable inotify \
     # && pecl install mcrypt-1.0.1 && docker-php-ext-enable mcrypt \
     #&& pecl install memcached && docker-php-ext-enable memcached \
     && pecl install redis && docker-php-ext-enable redis
@@ -50,7 +49,7 @@ RUN cat /home/opcache.ini >> /usr/local/etc/php/conf.d/docker-php-ext-opcache.in
 
 # Swoole
 RUN apt-get install -y libpcre3 libpcre3-dev libssl-dev
-RUN pecl install swoole-4.4.4 && docker-php-ext-enable swoole
+RUN pecl install swoole-4.4.12 && docker-php-ext-enable swoole
 
 # Install composer
 COPY composer.phar /usr/local/bin/composer
