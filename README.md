@@ -4,7 +4,7 @@
 
 - Nginx: `nginx:1.17.2`
 
-- PHP-FPM: `php:{5.6/7.3}-fpm-stretch`; with extensions: `OPcache` `Redis` `Memcache` `PDO` `Swoole`; with command: `Composer`
+- PHP-FPM: `php:{5.6/7.3}-fpm-stretch`; with extensions: `OPcache` `Redis` `Memcache` `PDO` `MongoDB` `Swoole`; with command: `Composer`
 
 - Redis: `redis:3.0`
 

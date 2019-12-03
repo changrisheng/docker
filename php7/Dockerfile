@@ -35,6 +35,7 @@ RUN apt-get update && apt-get install -y \
     && docker-php-ext-install gd \
     && pecl update-channels \
     && pecl install inotify-2.0.0 && docker-php-ext-enable inotify \
+    && pecl install mongodb && docker-php-ext-enable mongodb \
     # && pecl install mcrypt-1.0.1 && docker-php-ext-enable mcrypt \
     #&& pecl install memcached && docker-php-ext-enable memcached \
     && pecl install redis && docker-php-ext-enable redis
