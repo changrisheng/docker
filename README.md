@@ -4,13 +4,63 @@
 
 - Nginx: `nginx:1.17.2`
 
-- PHP-FPM: `php:{5.6/7.3}-fpm-stretch`; with extensions: `OPcache` `Redis` `Memcache` `PDO` `MongoDB` `Swoole`; with command: `Composer`
+- PHP-FPM: `php:{5.6/7.3}-fpm-stretch`
 
-- Redis: `redis:3.0`
+```
+[PHP Modules]
+bcmath
+Core
+ctype
+curl
+date
+dom
+fileinfo
+filter
+ftp
+gd
+gmp
+hash
+iconv
+inotify
+intl
+json
+libxml
+mbstring
+mysqlnd
+openssl
+pcntl
+pcre
+PDO
+pdo_mysql
+pdo_sqlite
+Phar
+posix
+readline
+redis
+Reflection
+session
+SimpleXML
+sodium
+SPL
+sqlite3
+standard
+swoole
+tokenizer
+xml
+xmlreader
+xmlwriter
+Zend OPcache
+zlib
+
+[Zend Modules]
+Zend OPcache
+```
+
+- Redis: `redis:5.0`
 
 - SSDB: `https://github.com/ideawu/ssdb/archive/master.zip`
 
-- MySQL: `mysql:5.7.23`
+- MySQL: `mysql:5.7.28`
 
 - PostgrelSQL: `postgres:11.2`
 

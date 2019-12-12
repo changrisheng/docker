@@ -4,13 +4,14 @@ services:
   #     build: ./php5
   #     container_name: php5
   #     ports:
-  #       - "9011:9011"
-  #       - "5201:5201"
+  #       - "9010:9010"
+  #       - "5210:5210"
   #       - "8010:8010"
+  #       - "8011:8011"
   #       - "8012:8012"
   #       - "8013:8013"
   #       - "8014:8014"
-  #       - "8021:8021"
+  #       - "8015:8015"
   #     links:
   #       - "mysql:mysql"
   #       - "redis:redis"
@@ -31,11 +32,12 @@ services:
       ports:
         - "9000:9000"
         - "5200:5200"
+        - "8000:8000"
         - "8001:8001"
         - "8002:8002"
         - "8003:8003"
         - "8004:8004"
-        - "8011:8011"
+        - "8005:8005"
       links:
         - "mysql:mysql"
         - "redis:redis"
@@ -84,7 +86,7 @@ services:
     
   mysql:
     container_name: mysql
-    image: mysql:5.7.23
+    image: mysql:5.7.28
     command: --default-authentication-plugin=mysql_native_password
     restart: "no"
     ports:
