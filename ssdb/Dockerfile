@@ -1,4 +1,4 @@
-FROM daocloud.io/debian:8
+FROM debian:8
 
 ADD sources.list /etc/apt/sources.list
 RUN apt-get update && apt-get install -y vim lrzsz git wget unzip make autoconf g++
