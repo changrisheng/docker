@@ -6,6 +6,13 @@ ADD sources.list /etc/apt/sources.list
 RUN apt-get update && apt-get install -y \
     vim \
     lrzsz \
+    curl \
+    iputils-ping \
+    net-tools \
+    tcpdump \
+    strace \
+    gdb \
+    lsof \
     libjpeg-dev \
     libpng-dev \
     zlib1g-dev \
