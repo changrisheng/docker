@@ -50,7 +50,7 @@ RUN cat /home/opcache.ini >> /usr/local/etc/php/conf.d/docker-php-ext-opcache.in
 
 # Swoole
 RUN apt-get install -y libpcre3 libpcre3-dev libssl-dev
-RUN pecl install --onlyreqdeps --nobuild swoole-4.4.15
+RUN pecl install --onlyreqdeps --nobuild swoole-4.4.17
 RUN cd "$(pecl config-get temp_dir)/swoole" && phpize && ./configure --enable-openssl && make && make install && cd -
 RUN docker-php-ext-enable swoole
 
