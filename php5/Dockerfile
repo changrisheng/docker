@@ -11,6 +11,7 @@ RUN apt-get update && apt-get install -y \
     net-tools \
     tcpdump \
     strace \
+    smem \
     gdb \
     lsof \
     libjpeg-dev \
