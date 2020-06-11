@@ -57,10 +57,10 @@ COPY opcache.ini /home/opcache.ini
 RUN cat /home/opcache.ini >> /usr/local/etc/php/conf.d/docker-php-ext-opcache.ini
 
 # Swoole
-RUN apt-get install -y libpcre3 libpcre3-dev libssl-dev
-RUN pecl install --onlyreqdeps --nobuild swoole-4.5.2
-RUN cd "$(pecl config-get temp_dir)/swoole" && phpize && ./configure --enable-openssl && make -j$(nproc) && make -j$(nproc) install && cd -
-RUN docker-php-ext-enable swoole
+RUN apt-get install -y libpcre3 libpcre3-dev libssl-dev \
+    && pecl install --onlyreqdeps --nobuild swoole-4.5.2 \
+    && cd "$(pecl config-get temp_dir)/swoole" && phpize && ./configure --enable-openssl && make -j$(nproc) && make -j$(nproc) install && cd - \
+    && docker-php-ext-enable swoole
 
 # Install composer
 COPY composer.phar /usr/local/bin/composer
@@ -73,11 +73,12 @@ RUN /usr/local/bin/composer config -g repo.packagist composer https://mirrors.al
 RUN usermod -u 1000 www-data
 
 # Create directory
-RUN mkdir /docker/www -p
-RUN mkdir /docker/log/php7 -p
+RUN mkdir /docker/www -p && mkdir /docker/log/php7 -p
 
 RUN chown -R www-data.www-data /docker/www /docker/log/php7
 
 RUN touch /docker/log/php7/php_errors.log && chmod 777 /docker/log/php7/php_errors.log
+
+RUN rm -rf /var/lib/apt/lists/*
 
 CMD ["php-fpm"]
