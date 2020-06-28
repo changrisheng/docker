@@ -116,3 +116,20 @@ services:
   #       - GF_SECURITY_ADMIN_PASSWORD=xy123456
   #   volumes:
   #     - "./runtime/grafana/data:/var/lib/grafana"
+
+  # zookeeper:
+  #   image: wurstmeister/zookeeper
+  #   container_name: zookeeper
+  #   ports:
+  #     - "127.0.0.1:2181:2181"
+  # kafka:
+  #   build: ./kafka
+  #   container_name: kafka
+  #   ports:
+  #     - "127.0.0.1:9092:9092"
+  #   environment:
+  #     KAFKA_ADVERTISED_HOST_NAME: 192.168.3.63
+  #     KAFKA_CREATE_TOPICS: "test:1:1"
+  #     KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+  #   volumes:
+  #     - /var/run/docker.sock:/var/run/docker.sock
