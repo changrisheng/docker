@@ -26,6 +26,9 @@ intl
 json
 libxml
 mbstring
+mcrypt
+memcached
+mongodb
 mysqlnd
 openssl
 pcntl
@@ -35,6 +38,7 @@ pdo_mysql
 pdo_sqlite
 Phar
 posix
+rdkafka
 readline
 redis
 Reflection
@@ -65,6 +69,14 @@ Zend OPcache
 - PostgrelSQL: `postgres:11.2`
 
 - Grafana: `grafana:5.4.3`
+
+- Zookeeper: `wurstmeister/zookeeper`
+
+- Kafka: `wurstmeister/kafka:2.11-1.1.1`
+
+- Kafdrop: `obsidiandynamics/kafdrop`
+
+- Kafka Manager: `hlebalbau/kafka-manager:stable`
 
 ## Steps
 
