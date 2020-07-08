@@ -1,12 +1,23 @@
 FROM php:7.3-fpm-stretch
 
+ARG LIBRDKAFKA_VERSION=1.4.4
+ARG RDKAFKA_VERSION=4.0.3
+ARG INOTIFY_VERSION=2.0.0
+ARG MONGODB_VERSION=1.7.4
+ARG MCRYPT_VERSION=1.0.3
+ARG MEMCACHED_VERSION=3.1.5
+ARG REDIS_VERSION=5.3.0
+ARG SWOOLE_VERSION=4.5.2
+
 # Chinese mirror
 ADD sources.list /etc/apt/sources.list
 
 RUN apt-get update && apt-get install -y \
     vim \
+    wget \
     lrzsz \
     curl \
+    telnet \
     iputils-ping \
     net-tools \
     tcpdump \
@@ -39,14 +50,15 @@ RUN apt-get update && apt-get install -y \
     opcache \
     bcmath \
     mbstring \
+    && pecl update-channels \
+    && git clone --branch v$LIBRDKAFKA_VERSION https://github.com/edenhill/librdkafka.git /tmp/librdkafka && cd /tmp/librdkafka && ./configure && make -j$(nproc) && make install && cd - && pecl install rdkafka-$RDKAFKA_VERSION && docker-php-ext-enable rdkafka && rm -rf /tmp/librdkafka \
     && docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/ \
     && docker-php-ext-install gd \
-    && pecl update-channels \
-    && pecl install inotify-2.0.0 && docker-php-ext-enable inotify \
-    && pecl install mongodb && docker-php-ext-enable mongodb \
-    # && pecl install mcrypt-1.0.1 && docker-php-ext-enable mcrypt \
-    #&& pecl install memcached && docker-php-ext-enable memcached \
-    && pecl install redis && docker-php-ext-enable redis
+    && pecl install inotify-$INOTIFY_VERSION && docker-php-ext-enable inotify \
+    && pecl install mongodb-$MONGODB_VERSION && docker-php-ext-enable mongodb \
+    && pecl install mcrypt-$MCRYPT_VERSION && docker-php-ext-enable mcrypt \
+    && pecl install memcached-$MEMCACHED_VERSION && docker-php-ext-enable memcached \
+    && pecl install redis-$REDIS_VERSION && docker-php-ext-enable redis
 
 # PHP config
 ADD php.ini /usr/local/etc/php/php.ini
@@ -58,8 +70,8 @@ RUN cat /home/opcache.ini >> /usr/local/etc/php/conf.d/docker-php-ext-opcache.in
 
 # Swoole
 RUN apt-get install -y libpcre3 libpcre3-dev libssl-dev \
-    && pecl install --onlyreqdeps --nobuild swoole-4.5.2 \
-    && cd "$(pecl config-get temp_dir)/swoole" && phpize && ./configure --enable-openssl && make -j$(nproc) && make -j$(nproc) install && cd - \
+    && pecl install --onlyreqdeps --nobuild swoole-$SWOOLE_VERSION \
+    && cd "$(pecl config-get temp_dir)/swoole" && phpize && ./configure --enable-openssl && make -j$(nproc) && make install && cd - \
     && docker-php-ext-enable swoole
 
 # Install composer

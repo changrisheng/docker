@@ -1,12 +1,19 @@
 FROM php:5.6-fpm-stretch
 
+ARG INOTIFY_VERSION=0.1.6
+ARG MEMCACHED_VERSION=2.2.0
+ARG REDIS_VERSION=4.3.0
+ARG SWOOLE_VERSION=1.10.4
+
 # Chinese mirror
 ADD sources.list /etc/apt/sources.list
 
 RUN apt-get update && apt-get install -y \
     vim \
+    wget \
     lrzsz \
     curl \
+    telnet \
     iputils-ping \
     net-tools \
     tcpdump \
@@ -43,9 +50,9 @@ RUN apt-get update && apt-get install -y \
     && docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/ \
     && docker-php-ext-install gd \
     && pecl update-channels \
-    && pecl install -f inotify-0.1.6 && docker-php-ext-enable inotify \
-    && pecl install redis-4.3.0 && docker-php-ext-enable redis \
-    && pecl install memcached-2.2.0 && docker-php-ext-enable memcached
+    && pecl install -f inotify-$INOTIFY_VERSION && docker-php-ext-enable inotify \
+    && pecl install memcached-$MEMCACHED_VERSION && docker-php-ext-enable memcached \
+    && pecl install redis-$REDIS_VERSION && docker-php-ext-enable redis
 
 # PHP config
 ADD php.ini /usr/local/etc/php/php.ini
@@ -57,8 +64,8 @@ RUN cat /home/opcache.ini >> /usr/local/etc/php/conf.d/docker-php-ext-opcache.in
 
 # Swoole
 RUN apt-get install -y libpcre3 libpcre3-dev libssl-dev \
-    && pecl install --onlyreqdeps --nobuild swoole-1.10.4 \
-    && cd "$(pecl config-get temp_dir)/swoole" && phpize && ./configure --enable-openssl && make -j$(nproc) && make -j$(nproc) install && cd - \
+    && pecl install --onlyreqdeps --nobuild swoole-$SWOOLE_VERSION \
+    && cd "$(pecl config-get temp_dir)/swoole" && phpize && ./configure --enable-openssl && make -j$(nproc) && make install && cd - \
     && docker-php-ext-enable swoole
 
 # Install composer
