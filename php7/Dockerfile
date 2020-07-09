@@ -51,7 +51,7 @@ RUN apt-get update && apt-get install -y \
     bcmath \
     mbstring \
     && pecl update-channels \
-    && git clone --branch v$LIBRDKAFKA_VERSION https://github.com/edenhill/librdkafka.git /tmp/librdkafka && cd /tmp/librdkafka && ./configure && make -j$(nproc) && make install && cd - && pecl install rdkafka-$RDKAFKA_VERSION && docker-php-ext-enable rdkafka && rm -rf /tmp/librdkafka \
+    && git clone --depth 1 --branch v$LIBRDKAFKA_VERSION https://github.com/edenhill/librdkafka.git /tmp/librdkafka && cd /tmp/librdkafka && ./configure && make -j$(nproc) && make install && cd - && pecl install rdkafka-$RDKAFKA_VERSION && docker-php-ext-enable rdkafka && rm -rf /tmp/librdkafka \
     && docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/ \
     && docker-php-ext-install gd \
     && pecl install inotify-$INOTIFY_VERSION && docker-php-ext-enable inotify \
