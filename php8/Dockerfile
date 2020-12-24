@@ -1,13 +1,14 @@
-FROM php:7.3-fpm-stretch
+FROM php:8.0-fpm-buster
 
-ARG LIBRDKAFKA_VERSION=1.4.4
-ARG RDKAFKA_VERSION=4.0.3
-ARG INOTIFY_VERSION=2.0.0
-ARG MONGODB_VERSION=1.7.4
-ARG MCRYPT_VERSION=1.0.3
+ARG LIBRDKAFKA_VERSION=1.5.3
+# TODO
+# ARG RDKAFKA_VERSION=5.0.0
+ARG INOTIFY_VERSION=3.0.0
+ARG MONGODB_VERSION=1.9.0
+ARG MCRYPT_VERSION=1.0.4
 ARG MEMCACHED_VERSION=3.1.5
-ARG REDIS_VERSION=5.3.0
-ARG SWOOLE_VERSION=4.5.2
+ARG REDIS_VERSION=5.3.2
+ARG SWOOLE_VERSION=4.5.10
 
 # Aliyun mirror
 ADD sources.list /etc/apt/sources.list
@@ -35,7 +36,8 @@ RUN apt-get update && apt-get install -y \
     libsasl2-dev \
     libmemcached-dev \
     libicu-dev \
-    mysql-client \
+    libonig-dev \
+    default-mysql-client \
     libgmp3-dev \
     libzip4 \
     procps \
@@ -51,8 +53,7 @@ RUN apt-get update && apt-get install -y \
     bcmath \
     mbstring \
     && pecl update-channels \
-    && git clone --depth 1 --branch v$LIBRDKAFKA_VERSION https://github.com/edenhill/librdkafka.git /tmp/librdkafka && cd /tmp/librdkafka && ./configure && make -j$(nproc) && make install && cd - && pecl install rdkafka-$RDKAFKA_VERSION && docker-php-ext-enable rdkafka && rm -rf /tmp/librdkafka \
-    && docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/ \
+    # && git clone --depth 1 --branch v$LIBRDKAFKA_VERSION https://github.com/edenhill/librdkafka.git /tmp/librdkafka && cd /tmp/librdkafka && ./configure && make -j$(nproc) && make install && cd - && pecl install rdkafka-$RDKAFKA_VERSION && docker-php-ext-enable rdkafka && rm -rf /tmp/librdkafka \
     && docker-php-ext-install gd \
     && pecl install inotify-$INOTIFY_VERSION && docker-php-ext-enable inotify \
     && pecl install mongodb-$MONGODB_VERSION && docker-php-ext-enable mongodb \
@@ -85,11 +86,11 @@ RUN /usr/local/bin/composer config -g repo.packagist composer https://mirrors.al
 RUN usermod -u 1000 www-data
 
 # Create directory
-RUN mkdir /docker/www -p && mkdir /docker/log/php7 -p
+RUN mkdir /docker/www -p && mkdir /docker/log/php8 -p
 
-RUN chown -R www-data.www-data /docker/www /docker/log/php7
+RUN chown -R www-data.www-data /docker/www /docker/log/php8
 
-RUN touch /docker/log/php7/php_errors.log && chmod 777 /docker/log/php7/php_errors.log
+RUN touch /docker/log/php8/php_errors.log && chmod 777 /docker/log/php8/php_errors.log
 
 RUN rm -rf /var/lib/apt/lists/*
 

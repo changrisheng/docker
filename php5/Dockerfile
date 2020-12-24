@@ -5,7 +5,7 @@ ARG MEMCACHED_VERSION=2.2.0
 ARG REDIS_VERSION=4.3.0
 ARG SWOOLE_VERSION=1.10.4
 
-# Chinese mirror
+# Aliyun mirror
 ADD sources.list /etc/apt/sources.list
 
 RUN apt-get update && apt-get install -y \
@@ -72,7 +72,7 @@ RUN apt-get install -y libpcre3 libpcre3-dev libssl-dev \
 COPY composer.phar /usr/local/bin/composer
 RUN chmod +x /usr/local/bin/composer
 
-# Chinese mirror
+# Aliyun mirror
 RUN /usr/local/bin/composer config -g repo.packagist composer https://mirrors.aliyun.com/composer/
 
 # Write Permission

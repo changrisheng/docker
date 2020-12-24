@@ -4,7 +4,7 @@
 
 - Nginx: `nginx:1.17.2`
 
-- PHP-FPM: `php:{5.6/7.3}-fpm-stretch`
+- PHP-FPM: `php:5.6-fpm-stretch` `php:7.3-fpm-stretch` `php:8.0-fpm-buster`
 
 ```
 [PHP Modules]
@@ -59,6 +59,8 @@ zlib
 [Zend Modules]
 Zend OPcache
 ```
+
+- Composer 2
 
 - Redis: `redis:5.0`
 
