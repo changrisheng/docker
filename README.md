@@ -62,6 +62,14 @@ Zend OPcache
 
 - Composer 2
 
+"PHP Fatal error:  Class UpdateHelper\ComposerPlugin contains 2 abstract methods and must therefore be declared abstract or implement the remaining methods (Composer\Plugin\PluginInterface::deactivate, Composer\Plugin\PluginInterface::uninstall) "
+
+```bash
+# Fix the above problem
+rm -rf vendor/kylekatarnls
+composer update kylekatarnls/update-helper
+```
+
 - Redis: `redis:5.0`
 
 - SSDB: `https://github.com/ideawu/ssdb/archive/master.zip`
