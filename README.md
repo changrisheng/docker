@@ -61,6 +61,7 @@ Zend OPcache
 ```
 
 - Composer 2
+
 "PHP Fatal error:  Class UpdateHelper\ComposerPlugin contains 2 abstract methods and must therefore be declared abstract or implement the remaining methods (Composer\Plugin\PluginInterface::deactivate, Composer\Plugin\PluginInterface::uninstall) "
 
 ```bash
