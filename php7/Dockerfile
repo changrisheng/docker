@@ -35,7 +35,6 @@ RUN apt-get update && apt-get install -y \
     libsasl2-dev \
     libmemcached-dev \
     libicu-dev \
-    mysql-client \
     libgmp3-dev \
     libzip4 \
     procps \

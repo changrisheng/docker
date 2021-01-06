@@ -37,7 +37,6 @@ RUN apt-get update && apt-get install -y \
     libmemcached-dev \
     libicu-dev \
     libonig-dev \
-    default-mysql-client \
     libgmp3-dev \
     libzip4 \
     procps \
