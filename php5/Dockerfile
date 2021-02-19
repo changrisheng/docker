@@ -3,7 +3,7 @@ FROM php:5.6-fpm-stretch
 ARG INOTIFY_VERSION=0.1.6
 ARG MEMCACHED_VERSION=2.2.0
 ARG REDIS_VERSION=4.3.0
-ARG SWOOLE_VERSION=1.10.6
+ARG SWOOLE_VERSION=1.10.5
 
 # Aliyun mirror
 ADD sources.list /etc/apt/sources.list
