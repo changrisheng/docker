@@ -32,6 +32,7 @@ mongodb
 mysqlnd
 openssl
 pcntl
+pcov
 pcre
 PDO
 pdo_mysql
