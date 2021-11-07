@@ -128,19 +128,26 @@ services:
   #     - "127.0.0.1:5432:5432"
   #   environment:
   #     POSTGRES_PASSWORD: xy123456
-  
+
+  # prometheus:
+  #   container_name: prometheus
+  #   image: prom/prometheus:v2.30.3
+  #   volumes:
+  #       - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
+  #   ports:
+  #       - '9090:9090'
+  #   command:
+  #       - '--config.file=/etc/prometheus/prometheus.yml'
+  #       - '--web.enable-admin-api'
+  #       - '--web.enable-lifecycle'
+
   # grafana:
   #   container_name: grafana
-  #   image: grafana/grafana:5.4.3
+  #   image: grafana/grafana:7.5.11
   #   restart: "no"
   #   ports:
-  #       - 127.0.0.1:3000:3000
-  #   environment:
-  #       - TZ=Asia/Shanghai
-  #       - GF_SECURITY_ADMIN_USER=root
-  #       - GF_SECURITY_ADMIN_PASSWORD=xy123456
-  #   volumes:
-  #     - "./runtime/grafana/data:/var/lib/grafana"
+  #       - 3000:3000
+  #   user: '472'
 
   # zookeeper:
   #   image: wurstmeister/zookeeper

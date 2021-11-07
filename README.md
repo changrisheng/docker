@@ -79,7 +79,9 @@ composer update kylekatarnls/update-helper
 
 - PostgrelSQL: `postgres:11.2`
 
-- Grafana: `grafana:5.4.3`
+- Prometheus: `prometheus:v2.30.3`
+
+- Grafana: `grafana:7.5.11`
 
 - Zookeeper: `wurstmeister/zookeeper`
 
