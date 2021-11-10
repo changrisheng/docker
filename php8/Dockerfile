@@ -8,7 +8,8 @@ ARG MONGODB_VERSION=1.9.0
 ARG MCRYPT_VERSION=1.0.4
 ARG MEMCACHED_VERSION=3.1.5
 ARG REDIS_VERSION=5.3.2
-ARG SWOOLE_VERSION=4.5.11
+ARG SWOOLE_VERSION=4.8.1
+ARG APCU_VERSION=5.1.21
 
 # Aliyun mirror
 ADD sources.list /etc/apt/sources.list
@@ -54,6 +55,7 @@ RUN apt-get update && apt-get install -y \
     && pecl update-channels \
     # && git clone --depth 1 --branch v$LIBRDKAFKA_VERSION https://github.com/edenhill/librdkafka.git /tmp/librdkafka && cd /tmp/librdkafka && ./configure && make -j$(nproc) && make install && cd - && pecl install rdkafka-$RDKAFKA_VERSION && docker-php-ext-enable rdkafka && rm -rf /tmp/librdkafka \
     && docker-php-ext-install gd \
+    && pecl install apcu-$APCU_VERSION \
     && pecl install pcov && docker-php-ext-enable pcov \
     && pecl install inotify-$INOTIFY_VERSION && docker-php-ext-enable inotify \
     && pecl install mongodb-$MONGODB_VERSION && docker-php-ext-enable mongodb \
@@ -66,8 +68,10 @@ ADD php.ini /usr/local/etc/php/php.ini
 ADD php-fpm.conf /usr/local/etc/php-fpm.conf
 
 # OPcache
-COPY opcache.ini /home/opcache.ini
-RUN cat /home/opcache.ini >> /usr/local/etc/php/conf.d/docker-php-ext-opcache.ini
+ADD docker-php-ext-opcache.ini /usr/local/etc/php/conf.d/docker-php-ext-opcache.ini
+
+# APCu
+ADD docker-php-ext-apcu.ini /usr/local/etc/php/conf.d/docker-php-ext-apcu.ini
 
 # Swoole
 RUN apt-get install -y libpcre3 libpcre3-dev libssl-dev \
