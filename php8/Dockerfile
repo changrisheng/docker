@@ -56,7 +56,8 @@ RUN apt-get update && apt-get install -y \
     # && git clone --depth 1 --branch v$LIBRDKAFKA_VERSION https://github.com/edenhill/librdkafka.git /tmp/librdkafka && cd /tmp/librdkafka && ./configure && make -j$(nproc) && make install && cd - && pecl install rdkafka-$RDKAFKA_VERSION && docker-php-ext-enable rdkafka && rm -rf /tmp/librdkafka \
     && docker-php-ext-install gd \
     && pecl install apcu-$APCU_VERSION \
-    && pecl install pcov && docker-php-ext-enable pcov \
+    # JIT is incompatible with pcov
+    # && pecl install pcov && docker-php-ext-enable pcov \ 
     && pecl install inotify-$INOTIFY_VERSION && docker-php-ext-enable inotify \
     && pecl install mongodb-$MONGODB_VERSION && docker-php-ext-enable mongodb \
     && pecl install mcrypt-$MCRYPT_VERSION && docker-php-ext-enable mcrypt \

@@ -8,6 +8,7 @@
 
 ```ini
 [PHP Modules]
+apcu
 bcmath
 Core
 ctype
