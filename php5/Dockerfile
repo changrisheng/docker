@@ -4,6 +4,7 @@ ARG INOTIFY_VERSION=0.1.6
 ARG MEMCACHED_VERSION=2.2.0
 ARG REDIS_VERSION=4.3.0
 ARG SWOOLE_VERSION=1.10.5
+ARG APCU_VERSION=4.0.10
 
 # Aliyun mirror
 ADD sources.list /etc/apt/sources.list
@@ -50,6 +51,7 @@ RUN apt-get update && apt-get install -y \
     && docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/ \
     && docker-php-ext-install gd \
     && pecl update-channels \
+    && pecl install apcu-$APCU_VERSION \
     && pecl install -f inotify-$INOTIFY_VERSION && docker-php-ext-enable inotify \
     && pecl install memcached-$MEMCACHED_VERSION && docker-php-ext-enable memcached \
     && pecl install redis-$REDIS_VERSION && docker-php-ext-enable redis
