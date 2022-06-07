@@ -1,31 +1,33 @@
 FROM php:7.3-fpm-stretch
 
-ARG LIBRDKAFKA_VERSION=1.5.3
-ARG RDKAFKA_VERSION=4.1.1
+ARG LIBRDKAFKA_VERSION=1.8.2
+ARG RDKAFKA_VERSION=6.0.1
 ARG INOTIFY_VERSION=3.0.0
-ARG MONGODB_VERSION=1.9.0
-ARG MCRYPT_VERSION=1.0.4
-ARG MEMCACHED_VERSION=3.1.5
-ARG REDIS_VERSION=5.3.2
+ARG MONGODB_VERSION=1.13.0
+ARG MCRYPT_VERSION=1.0.5
+ARG MEMCACHED_VERSION=3.2.0
+ARG REDIS_VERSION=5.3.7
 ARG SWOOLE_VERSION=4.5.11
 ARG APCU_VERSION=5.1.21
 
 # Aliyun mirror
-ADD sources.list /etc/apt/sources.list
+# ADD sources.list /etc/apt/sources.list
 
 RUN apt-get update && apt-get install -y \
     vim \
-    wget \
+    # wget \
     lrzsz \
     curl \
     telnet \
     iputils-ping \
+    iproute2 \
     net-tools \
-    tcpdump \
-    strace \
-    smem \
-    gdb \
-    lsof \
+    # tcpdump \
+    # strace \
+    python \
+    # smem \
+    # gdb \
+    # lsof \
     libjpeg-dev \
     libpng-dev \
     zlib1g-dev \
@@ -40,8 +42,11 @@ RUN apt-get update && apt-get install -y \
     libzip4 \
     procps \
     zip \
-    unzip \
+    # unzip \
     git \
+    libpcre3 \
+    libpcre3-dev \
+    libssl-dev \
     && docker-php-ext-install gmp \
     pdo_mysql \
     iconv \
@@ -59,8 +64,11 @@ RUN apt-get update && apt-get install -y \
     && pecl install inotify-$INOTIFY_VERSION && docker-php-ext-enable inotify \
     && pecl install mongodb-$MONGODB_VERSION && docker-php-ext-enable mongodb \
     && pecl install mcrypt-$MCRYPT_VERSION && docker-php-ext-enable mcrypt \
-    && pecl install memcached-$MEMCACHED_VERSION && docker-php-ext-enable memcached \
+    # && pecl install memcached-$MEMCACHED_VERSION && docker-php-ext-enable memcached \
     && pecl install redis-$REDIS_VERSION && docker-php-ext-enable redis
+
+# Update Packages
+RUN apt-get upgrade -y openssl libxml2 tar libtool unzip
 
 # PHP config
 ADD php.ini /usr/local/etc/php/php.ini
@@ -73,8 +81,7 @@ ADD docker-php-ext-opcache.ini /usr/local/etc/php/conf.d/docker-php-ext-opcache.
 ADD docker-php-ext-apcu.ini /usr/local/etc/php/conf.d/docker-php-ext-apcu.ini
 
 # Swoole
-RUN apt-get install -y libpcre3 libpcre3-dev libssl-dev \
-    && pecl install --onlyreqdeps --nobuild swoole-$SWOOLE_VERSION \
+RUN pecl install --onlyreqdeps --nobuild swoole-$SWOOLE_VERSION \
     && cd "$(pecl config-get temp_dir)/swoole" && phpize && ./configure --enable-openssl && make -j$(nproc) && make install && cd - \
     && docker-php-ext-enable swoole
 
@@ -85,16 +92,15 @@ RUN chmod +x /usr/local/bin/composer
 # Aliyun mirror
 RUN /usr/local/bin/composer config -g repo.packagist composer https://mirrors.aliyun.com/composer/
 
-# Write Permission
+# FPM Write Permission
 RUN usermod -u 1000 www-data
+
+# Clear
+RUN rm -rf /var/lib/apt/lists/* && rm -rf /tmp/* && apt-get autoremove && apt-get autoclean
 
 # Create directory
 RUN mkdir /docker/www -p && mkdir /docker/log/php7 -p
-
 RUN chown -R www-data.www-data /docker/www /docker/log/php7
-
 RUN touch /docker/log/php7/php_errors.log && chmod 777 /docker/log/php7/php_errors.log
-
-RUN rm -rf /var/lib/apt/lists/*
 
 CMD ["php-fpm"]

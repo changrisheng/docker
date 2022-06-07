@@ -12,7 +12,7 @@ ARG SWOOLE_VERSION=4.8.1
 ARG APCU_VERSION=5.1.21
 
 # Aliyun mirror
-ADD sources.list /etc/apt/sources.list
+# ADD sources.list /etc/apt/sources.list
 
 RUN apt-get update && apt-get install -y \
     vim \
