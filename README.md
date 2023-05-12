@@ -4,21 +4,25 @@
 
 - Nginx: `nginx:1.17.2`
 
-- PHP-FPM: `php:5.6-fpm-stretch` `php:7.3-fpm-stretch` `php:8.0-fpm-buster`
+- PHP-FPM: `php:5.6-fpm-stretch` `php7.4:based on amazonlinux:2` `php:8.0-fpm-buster`
 
 ```ini
 [PHP Modules]
 apcu
 bcmath
+bz2
+calendar
 Core
 ctype
 curl
 date
 dom
+exif
 fileinfo
 filter
 ftp
 gd
+gettext
 gmp
 hash
 iconv
@@ -28,8 +32,8 @@ json
 libxml
 mbstring
 mcrypt
-memcached
 mongodb
+mysqli
 mysqlnd
 openssl
 pcntl
@@ -45,17 +49,24 @@ readline
 redis
 Reflection
 session
+shmop
 SimpleXML
+sockets
 sodium
 SPL
 sqlite3
 standard
 swoole
+sysvmsg
+sysvsem
+sysvshm
 tokenizer
 xml
 xmlreader
 xmlwriter
+xsl
 Zend OPcache
+zip
 zlib
 
 [Zend Modules]
@@ -63,14 +74,6 @@ Zend OPcache
 ```
 
 - Composer 2
-
-"PHP Fatal error:  Class UpdateHelper\ComposerPlugin contains 2 abstract methods and must therefore be declared abstract or implement the remaining methods (Composer\Plugin\PluginInterface::deactivate, Composer\Plugin\PluginInterface::uninstall) "
-
-```bash
-# Fix the above problem
-rm -rf vendor/kylekatarnls
-composer update kylekatarnls/update-helper
-```
 
 - Redis: `redis:5.0`
 
