@@ -30,7 +30,7 @@ RUN amazon-linux-extras enable php7.4 && yum clean metadata && yum install -y \
     # wget \
     # lrzsz \
     # tcpdump \
-    # strace \
+    strace \
     # gdb \
     # lsof \
     # git-core \
