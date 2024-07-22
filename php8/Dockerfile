@@ -2,14 +2,14 @@ FROM php:8.2-fpm-buster
 
 ARG LIBRDKAFKA_VERSION=1.5.3
 # TODO
-# ARG RDKAFKA_VERSION=5.0.0
+# ARG RDKAFKA_VERSION=6.0.3
 ARG INOTIFY_VERSION=3.0.0
-ARG MONGODB_VERSION=1.9.0
-ARG MCRYPT_VERSION=1.0.4
-ARG MEMCACHED_VERSION=3.1.5
-ARG REDIS_VERSION=5.3.2
-ARG SWOOLE_VERSION=4.8.1
-ARG APCU_VERSION=5.1.21
+ARG MONGODB_VERSION=1.19.3
+ARG MCRYPT_VERSION=1.0.7
+ARG MEMCACHED_VERSION=3.2.0
+ARG REDIS_VERSION=6.0.2
+ARG SWOOLE_VERSION=5.1.3
+ARG APCU_VERSION=5.1.23
 
 # Aliyun mirror
 # ADD sources.list /etc/apt/sources.list
@@ -39,6 +39,7 @@ RUN apt-get update && apt-get install -y \
     libicu-dev \
     libonig-dev \
     libgmp3-dev \
+    libbrotli-dev \
     libzip4 \
     procps \
     zip \
